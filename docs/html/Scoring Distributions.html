@@ -1,0 +1,2124 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Model Scoring Distributions &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Scoring Distributions';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scorigami Analysis" href="Scorigami.html" />
+    <link rel="prev" title="Predict Final Outcome using Aggression Scores" href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    NFL Scoring Plays Research Project.
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Last%20Digit%20of%20each%20Quarter%20Analysis.html">Final Digits of each Quarter Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html">Predict Final Outcome using Aggression Scores</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Model Scoring Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scorigami.html">Scorigami Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FScoring Distributions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Scoring Distributions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Model Scoring Distributions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="model-scoring-distributions">
+<h1>Model Scoring Distributions<a class="headerlink" href="#model-scoring-distributions" title="Link to this heading">#</a></h1>
+<p>We will now model the scoring distributions of games. In the cell below, all scoring play columns are added to a dataset of 2023 plays. We record separate columns for home and away field goals worth 3 points, and touchdowns worth 6 points with a separate column for the extra point and two-point conversion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We start by loading the dataset of all plays in the 2023 NFL season. We extract the columns that we want and we create a all_games dataframe of all scoring plays including failed extra points and two point conversions. From there, we assign 6 for all touchdowns and 1 for sucessful extra points and 2 for sucessful 2 point conversions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_plays_2023</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;</span><span class="p">)</span>
+<span class="n">plays_2023</span> <span class="o">=</span> <span class="n">all_plays_2023</span><span class="p">[[</span><span class="s1">&#39;season_type&#39;</span><span class="p">,</span><span class="s1">&#39;game_id&#39;</span><span class="p">,</span><span class="s1">&#39;week&#39;</span><span class="p">,</span><span class="s1">&#39;qtr&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;quarter_seconds_remaining&#39;</span><span class="p">,</span><span class="s1">&#39;sp&#39;</span><span class="p">,</span><span class="s1">&#39;posteam&#39;</span><span class="p">,</span><span class="s1">&#39;defteam&#39;</span><span class="p">,</span><span class="s1">&#39;side_of_field&#39;</span><span class="p">,</span><span class="s1">&#39;home_team&#39;</span><span class="p">,</span><span class="s1">&#39;away_team&#39;</span><span class="p">,</span><span class="s1">&#39;td_team&#39;</span><span class="p">,</span><span class="s1">&#39;touchdown&#39;</span><span class="p">,</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">,</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">,</span><span class="s1">&#39;field_goal_result&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;desc&#39;</span><span class="p">,</span><span class="s1">&#39;play_type&#39;</span><span class="p">,</span><span class="s1">&#39;safety&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">all_games</span> <span class="o">=</span> <span class="n">plays_2023</span><span class="p">[(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;sp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failed&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failure&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;td_team&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">6</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;td_team&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">6</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;xp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;good&#39;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;2pt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;success&#39;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/8y/bzk4l8dd4d9bqpf55d58_f240000gn/T/ipykernel_2461/236923793.py:1: DtypeWarning: Columns (179,180,182,183,189,190,197,198,203,204,205,206,218,219,220,222,224,226,253,254,255,260,262,263,283,284,332) have mixed types. Specify dtype option on import or set low_memory=False.
+  all_plays_2023 = pd.read_csv(&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we create a pandas series for all safetys (assigned 2 points) and field goal kicks (assigned 3 points).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homesafety</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;defteam&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;safety&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">awaysafety</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;defteam&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;safety&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">homekick</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;posteam&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;field_goal_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;made&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">3</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">awaykick</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;posteam&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;field_goal_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;made&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">3</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We make a column in all_games for the total home scoring pocession. For example, if a team scored 6 points and a 1 point extra point, we record that play as 7 points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_h</span> <span class="o">=</span> <span class="p">((</span><span class="n">homesafety</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">three_h</span> <span class="o">=</span> <span class="p">((</span><span class="n">homekick</span> <span class="o">==</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">3</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">six_h</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;xp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;2pt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">6</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">seven_h</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;xp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">7</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">eight_h</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;2pt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">8</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_h</span> <span class="o">+</span> <span class="n">three_h</span> <span class="o">+</span> <span class="n">six_h</span> <span class="o">+</span> <span class="n">seven_h</span> <span class="o">+</span> <span class="n">eight_h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We do the same for the away team score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_a</span> <span class="o">=</span> <span class="p">((</span><span class="n">awaysafety</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">three_a</span> <span class="o">=</span> <span class="p">((</span><span class="n">awaykick</span> <span class="o">==</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">3</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">six_a</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;xp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;2pt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">6</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">seven_a</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;xp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">7</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">eight_a</span> <span class="o">=</span> <span class="p">((</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_team_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;2pt&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">8</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_a</span> <span class="o">+</span><span class="n">three_a</span> <span class="o">+</span> <span class="n">six_a</span> <span class="o">+</span> <span class="n">seven_a</span> <span class="o">+</span> <span class="n">eight_a</span>
+<span class="n">all_games</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season_type</th>
+      <th>game_id</th>
+      <th>week</th>
+      <th>qtr</th>
+      <th>total_away_score</th>
+      <th>total_home_score</th>
+      <th>quarter_seconds_remaining</th>
+      <th>sp</th>
+      <th>posteam</th>
+      <th>defteam</th>
+      <th>...</th>
+      <th>total_away_score</th>
+      <th>desc</th>
+      <th>play_type</th>
+      <th>safety</th>
+      <th>home_team_score</th>
+      <th>away_team_score</th>
+      <th>xp</th>
+      <th>2pt</th>
+      <th>home_score</th>
+      <th>away_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>25</th>
+      <td>REG</td>
+      <td>2023_01_ARI_WAS</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>262.0</td>
+      <td>1</td>
+      <td>WAS</td>
+      <td>ARI</td>
+      <td>...</td>
+      <td>0</td>
+      <td>(4:22) (Shotgun) 14-S.Howell pass short left t...</td>
+      <td>pass</td>
+      <td>0.0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>REG</td>
+      <td>2023_01_ARI_WAS</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7</td>
+      <td>255.0</td>
+      <td>1</td>
+      <td>WAS</td>
+      <td>ARI</td>
+      <td>...</td>
+      <td>0</td>
+      <td>6-J.Slye extra point is GOOD, Center-54-C.Chee...</td>
+      <td>extra_point</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>REG</td>
+      <td>2023_01_ARI_WAS</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>7</td>
+      <td>56.0</td>
+      <td>1</td>
+      <td>ARI</td>
+      <td>WAS</td>
+      <td>...</td>
+      <td>3</td>
+      <td>(:56) 5-M.Prater 28 yard field goal is GOOD, C...</td>
+      <td>field_goal</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>REG</td>
+      <td>2023_01_ARI_WAS</td>
+      <td>1</td>
+      <td>2</td>
+      <td>6</td>
+      <td>7</td>
+      <td>811.0</td>
+      <td>1</td>
+      <td>ARI</td>
+      <td>WAS</td>
+      <td>...</td>
+      <td>6</td>
+      <td>(13:31) 5-M.Prater 54 yard field goal is GOOD,...</td>
+      <td>field_goal</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>REG</td>
+      <td>2023_01_ARI_WAS</td>
+      <td>1</td>
+      <td>2</td>
+      <td>12</td>
+      <td>7</td>
+      <td>62.0</td>
+      <td>1</td>
+      <td>WAS</td>
+      <td>ARI</td>
+      <td>...</td>
+      <td>12</td>
+      <td>(1:02) (Shotgun) 14-S.Howell sacked at WAS 12 ...</td>
+      <td>pass</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>48370</th>
+      <td>POST</td>
+      <td>2023_19_PIT_BUF</td>
+      <td>19</td>
+      <td>3</td>
+      <td>10</td>
+      <td>24</td>
+      <td>96.0</td>
+      <td>1</td>
+      <td>BUF</td>
+      <td>PIT</td>
+      <td>...</td>
+      <td>10</td>
+      <td>(1:36) 2-T.Bass 45 yard field goal is GOOD, Ce...</td>
+      <td>field_goal</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>48384</th>
+      <td>POST</td>
+      <td>2023_19_PIT_BUF</td>
+      <td>19</td>
+      <td>4</td>
+      <td>16</td>
+      <td>24</td>
+      <td>637.0</td>
+      <td>1</td>
+      <td>PIT</td>
+      <td>BUF</td>
+      <td>...</td>
+      <td>16</td>
+      <td>(10:37) (Shotgun) 2-M.Rudolph pass short left ...</td>
+      <td>pass</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>48385</th>
+      <td>POST</td>
+      <td>2023_19_PIT_BUF</td>
+      <td>19</td>
+      <td>4</td>
+      <td>17</td>
+      <td>24</td>
+      <td>632.0</td>
+      <td>1</td>
+      <td>PIT</td>
+      <td>BUF</td>
+      <td>...</td>
+      <td>17</td>
+      <td>9-C.Boswell extra point is GOOD, Center-46-C.K...</td>
+      <td>extra_point</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>48394</th>
+      <td>POST</td>
+      <td>2023_19_PIT_BUF</td>
+      <td>19</td>
+      <td>4</td>
+      <td>17</td>
+      <td>30</td>
+      <td>397.0</td>
+      <td>1</td>
+      <td>BUF</td>
+      <td>PIT</td>
+      <td>...</td>
+      <td>17</td>
+      <td>(6:37) (Shotgun) 17-J.Allen pass short middle ...</td>
+      <td>pass</td>
+      <td>0.0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>48395</th>
+      <td>POST</td>
+      <td>2023_19_PIT_BUF</td>
+      <td>19</td>
+      <td>4</td>
+      <td>17</td>
+      <td>31</td>
+      <td>387.0</td>
+      <td>1</td>
+      <td>BUF</td>
+      <td>PIT</td>
+      <td>...</td>
+      <td>17</td>
+      <td>2-T.Bass extra point is GOOD, Center-69-R.Ferg...</td>
+      <td>extra_point</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3610 rows × 29 columns</p>
+</div></div></div>
+</div>
+<p>We will create a dictionary called scores. This dictionary tells us how many scoring plays occured in quarter 1 for the home and away team.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">len_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">len_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;away_score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;home_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">len_h</span><span class="p">],</span> <span class="s1">&#39;away_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">len_a</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will create a dictionary of the probability that a single scoring play results in 2,3,6,7, or 8 points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plays</span> <span class="o">=</span> <span class="p">{</span><span class="n">place</span><span class="p">:{</span><span class="n">i</span><span class="p">:(</span><span class="n">all_games</span><span class="p">[[</span><span class="n">place</span><span class="p">]]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="n">place</span><span class="p">]</span><span class="o">/</span><span class="n">scores</span><span class="p">[</span><span class="n">place</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[[</span><span class="n">len_h</span><span class="p">,</span><span class="n">len_a</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]}</span> <span class="k">for</span> <span class="n">place</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">,</span><span class="s1">&#39;away_score&#39;</span><span class="p">]}</span>
+<span class="n">plays</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;home_score&#39;: {2: 0.010752688172043012,
+  3: 0.39619520264681557,
+  6: 0.04218362282878412,
+  7: 0.5153019023986766,
+  8: 0.03556658395368073},
+ &#39;away_score&#39;: {2: 0.004651162790697674,
+  3: 0.41674418604651164,
+  6: 0.0586046511627907,
+  7: 0.4930232558139535,
+  8: 0.026976744186046512}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are also interested in how many scoring plays will occur for the home and away team. We will create a dictionary with the probability of how many scoring plays a team has.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_scores</span> <span class="o">=</span> <span class="p">{</span><span class="n">place</span><span class="p">:</span><span class="n">plays_2023</span><span class="p">[</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;posteam&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">plays_2023</span><span class="p">[</span><span class="n">place</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;game_id&#39;</span><span class="p">,</span><span class="n">as_index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;sp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="k">for</span> <span class="n">place</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">,</span><span class="s1">&#39;away_team&#39;</span><span class="p">]}</span>
+<span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;away_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">num_scores</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">num_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>home_team</th>
+      <th>away_team</th>
+      <th>home_score</th>
+      <th>away_score</th>
+    </tr>
+    <tr>
+      <th>sp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>3.0</td>
+      <td>0.010791</td>
+      <td>0.010791</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>10.0</td>
+      <td>0.014388</td>
+      <td>0.035971</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>13.0</td>
+      <td>0.032374</td>
+      <td>0.046763</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21</td>
+      <td>34.0</td>
+      <td>0.075540</td>
+      <td>0.122302</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15</td>
+      <td>27.0</td>
+      <td>0.053957</td>
+      <td>0.097122</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>41</td>
+      <td>43.0</td>
+      <td>0.147482</td>
+      <td>0.154676</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>43</td>
+      <td>43.0</td>
+      <td>0.154676</td>
+      <td>0.154676</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>36</td>
+      <td>31.0</td>
+      <td>0.129496</td>
+      <td>0.111511</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>35</td>
+      <td>21.0</td>
+      <td>0.125899</td>
+      <td>0.075540</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>31</td>
+      <td>24.0</td>
+      <td>0.111511</td>
+      <td>0.086331</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>14</td>
+      <td>16.0</td>
+      <td>0.050360</td>
+      <td>0.057554</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>13</td>
+      <td>7.0</td>
+      <td>0.046763</td>
+      <td>0.025180</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>6</td>
+      <td>6.0</td>
+      <td>0.021583</td>
+      <td>0.021583</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0.003597</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3</td>
+      <td>NaN</td>
+      <td>0.010791</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2</td>
+      <td>NaN</td>
+      <td>0.007194</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0.003597</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We will create a function num_sp() which uses the num_scores dictionaries above to generate how many scoring plays a team has per game for a given number of games.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">num_sp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">team</span><span class="p">):</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">num_scores</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">team</span><span class="si">}</span><span class="s2">_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">num_scores</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">team</span><span class="si">}</span><span class="s2">_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">sp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function games() generate a distribution of single-scoring plays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">games</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">team</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">team</span> <span class="o">==</span> <span class="s1">&#39;home&#39;</span><span class="p">):</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">scores_in_game</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">plays</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">team</span><span class="si">}</span><span class="s2">_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">plays</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">scores_in_game</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function scores() combines the previous functions and dictionaries to print simulated scores for a certain number of games.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scores</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">home_score_plays</span> <span class="o">=</span> <span class="n">num_sp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="s1">&#39;home&#39;</span><span class="p">)</span>
+    <span class="n">away_score_plays</span> <span class="o">=</span> <span class="n">num_sp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="s1">&#39;away&#39;</span><span class="p">)</span>
+    <span class="n">scores_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">home_score_plays</span><span class="p">)):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">games</span><span class="p">(</span><span class="n">home_score_plays</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;home&#39;</span><span class="p">)))</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">games</span><span class="p">(</span><span class="n">away_score_plays</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;away&#39;</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">:</span>
+            <span class="n">scores_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">h</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scores_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">h</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">scores_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For instance, for a 1000 games, these are simulated final scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(18, 19),
+ (29, 34),
+ (16, 37),
+ (37, 71),
+ (31, 41),
+ (20, 50),
+ (20, 58),
+ (26, 47),
+ (24, 30),
+ (24, 45),
+ (33, 47),
+ (37, 57),
+ (12, 44),
+ (24, 33),
+ (19, 41),
+ (21, 37),
+ (17, 53),
+ (21, 53),
+ (51, 109),
+ (0, 40),
+ (33, 61),
+ (50, 51),
+ (34, 40),
+ (10, 40),
+ (23, 36),
+ (18, 19),
+ (24, 40),
+ (52, 55),
+ (16, 33),
+ (14, 20),
+ (33, 61),
+ (34, 47),
+ (19, 37),
+ (34, 39),
+ (27, 50),
+ (12, 52),
+ (6, 27),
+ (37, 61),
+ (31, 34),
+ (9, 23),
+ (24, 24),
+ (34, 43),
+ (13, 27),
+ (23, 47),
+ (26, 30),
+ (38, 51),
+ (3, 14),
+ (48, 64),
+ (24, 31),
+ (57, 63),
+ (26, 71),
+ (3, 31),
+ (30, 37),
+ (32, 37),
+ (44, 50),
+ (12, 32),
+ (13, 18),
+ (22, 29),
+ (13, 13),
+ (35, 60),
+ (25, 31),
+ (36, 38),
+ (56, 65),
+ (12, 31),
+ (44, 47),
+ (22, 23),
+ (47, 63),
+ (31, 45),
+ (36, 42),
+ (13, 23),
+ (43, 56),
+ (30, 49),
+ (33, 37),
+ (17, 78),
+ (24, 60),
+ (26, 30),
+ (26, 42),
+ (36, 49),
+ (31, 48),
+ (38, 38),
+ (21, 56),
+ (35, 65),
+ (31, 41),
+ (17, 37),
+ (10, 14),
+ (36, 43),
+ (7, 55),
+ (47, 66),
+ (34, 60),
+ (18, 19),
+ (33, 34),
+ (53, 56),
+ (27, 48),
+ (26, 37),
+ (41, 53),
+ (29, 32),
+ (10, 37),
+ (16, 65),
+ (26, 37),
+ (10, 60),
+ (39, 59),
+ (18, 44),
+ (23, 24),
+ (17, 68),
+ (56, 73),
+ (30, 31),
+ (49, 53),
+ (34, 43),
+ (33, 34),
+ (26, 52),
+ (30, 78),
+ (37, 54),
+ (22, 41),
+ (17, 30),
+ (10, 40),
+ (33, 46),
+ (23, 27),
+ (3, 36),
+ (17, 36),
+ (31, 34),
+ (32, 37),
+ (47, 49),
+ (20, 26),
+ (17, 35),
+ (16, 34),
+ (27, 41),
+ (13, 31),
+ (17, 21),
+ (36, 44),
+ (37, 50),
+ (18, 34),
+ (39, 42),
+ (14, 43),
+ (34, 34),
+ (26, 33),
+ (0, 10),
+ (10, 37),
+ (27, 34),
+ (24, 25),
+ (17, 44),
+ (7, 41),
+ (22, 40),
+ (7, 34),
+ (35, 76),
+ (30, 57),
+ (35, 44),
+ (38, 51),
+ (22, 24),
+ (47, 51),
+ (54, 58),
+ (14, 27),
+ (13, 13),
+ (25, 55),
+ (35, 53),
+ (30, 32),
+ (32, 64),
+ (20, 70),
+ (7, 64),
+ (9, 29),
+ (27, 47),
+ (17, 23),
+ (18, 64),
+ (27, 36),
+ (16, 23),
+ (32, 45),
+ (16, 48),
+ (24, 27),
+ (20, 35),
+ (17, 58),
+ (9, 24),
+ (17, 55),
+ (7, 34),
+ (35, 37),
+ (20, 47),
+ (41, 55),
+ (13, 51),
+ (21, 27),
+ (23, 36),
+ (40, 45),
+ (7, 26),
+ (48, 59),
+ (43, 44),
+ (24, 26),
+ (36, 36),
+ (21, 27),
+ (32, 33),
+ (47, 47),
+ (10, 34),
+ (0, 39),
+ (38, 61),
+ (17, 32),
+ (17, 37),
+ (41, 73),
+ (27, 38),
+ (20, 43),
+ (37, 51),
+ (6, 41),
+ (19, 65),
+ (31, 42),
+ (30, 44),
+ (23, 50),
+ (3, 17),
+ (13, 49),
+ (24, 39),
+ (15, 95),
+ (40, 51),
+ (12, 39),
+ (16, 40),
+ (41, 62),
+ (24, 30),
+ (12, 34),
+ (21, 30),
+ (17, 50),
+ (30, 40),
+ (50, 52),
+ (11, 28),
+ (24, 35),
+ (12, 22),
+ (20, 51),
+ (10, 31),
+ (44, 54),
+ (23, 30),
+ (24, 42),
+ (34, 42),
+ (37, 40),
+ (19, 45),
+ (27, 47),
+ (20, 37),
+ (33, 48),
+ (0, 23),
+ (27, 50),
+ (16, 61),
+ (43, 52),
+ (14, 19),
+ (26, 31),
+ (14, 69),
+ (23, 34),
+ (17, 41),
+ (0, 51),
+ (30, 45),
+ (30, 44),
+ (24, 43),
+ (20, 50),
+ (29, 53),
+ (18, 37),
+ (24, 47),
+ (27, 31),
+ (26, 29),
+ (47, 49),
+ (11, 23),
+ (40, 49),
+ (30, 48),
+ (26, 43),
+ (55, 68),
+ (36, 41),
+ (25, 53),
+ (29, 56),
+ (44, 47),
+ (33, 63),
+ (21, 34),
+ (53, 57),
+ (27, 34),
+ (26, 48),
+ (7, 54),
+ (13, 41),
+ (33, 35),
+ (45, 68),
+ (33, 65),
+ (6, 60),
+ (33, 33),
+ (46, 65),
+ (39, 46),
+ (17, 62),
+ (41, 50),
+ (20, 21),
+ (27, 40),
+ (21, 50),
+ (44, 53),
+ (30, 31),
+ (24, 60),
+ (13, 53),
+ (22, 30),
+ (24, 38),
+ (9, 58),
+ (19, 30),
+ (18, 63),
+ (22, 51),
+ (20, 34),
+ (0, 19),
+ (36, 37),
+ (19, 34),
+ (16, 48),
+ (32, 35),
+ (16, 60),
+ (31, 83),
+ (16, 33),
+ (3, 47),
+ (21, 44),
+ (37, 40),
+ (3, 55),
+ (32, 46),
+ (37, 40),
+ (23, 48),
+ (17, 43),
+ (17, 58),
+ (12, 48),
+ (34, 40),
+ (23, 30),
+ (48, 53),
+ (10, 28),
+ (39, 44),
+ (40, 53),
+ (7, 9),
+ (26, 37),
+ (34, 42),
+ (48, 56),
+ (27, 50),
+ (46, 64),
+ (10, 35),
+ (41, 42),
+ (24, 40),
+ (16, 52),
+ (30, 48),
+ (44, 48),
+ (31, 50),
+ (31, 42),
+ (23, 35),
+ (28, 43),
+ (25, 38),
+ (9, 68),
+ (21, 50),
+ (14, 36),
+ (10, 27),
+ (31, 63),
+ (24, 35),
+ (32, 52),
+ (31, 39),
+ (17, 65),
+ (3, 20),
+ (16, 47),
+ (16, 47),
+ (33, 45),
+ (24, 48),
+ (21, 33),
+ (52, 57),
+ (35, 53),
+ (23, 41),
+ (39, 57),
+ (22, 23),
+ (40, 54),
+ (26, 43),
+ (29, 44),
+ (32, 48),
+ (23, 36),
+ (38, 40),
+ (17, 34),
+ (12, 24),
+ (20, 36),
+ (41, 45),
+ (16, 31),
+ (20, 52),
+ (39, 55),
+ (26, 33),
+ (7, 28),
+ (41, 54),
+ (7, 20),
+ (17, 30),
+ (32, 54),
+ (23, 52),
+ (10, 13),
+ (29, 31),
+ (19, 23),
+ (33, 34),
+ (20, 64),
+ (22, 24),
+ (21, 41),
+ (22, 36),
+ (23, 29),
+ (35, 41),
+ (13, 19),
+ (31, 76),
+ (33, 48),
+ (17, 38),
+ (17, 52),
+ (33, 39),
+ (44, 48),
+ (47, 57),
+ (41, 54),
+ (20, 51),
+ (31, 67),
+ (37, 40),
+ (9, 24),
+ (30, 57),
+ (27, 38),
+ (7, 68),
+ (29, 31),
+ (3, 76),
+ (30, 42),
+ (49, 52),
+ (7, 13),
+ (3, 10),
+ (22, 40),
+ (41, 49),
+ (3, 54),
+ (27, 65),
+ (25, 55),
+ (31, 55),
+ (47, 57),
+ (6, 30),
+ (30, 48),
+ (24, 35),
+ (44, 57),
+ (36, 37),
+ (37, 48),
+ (45, 51),
+ (26, 30),
+ (36, 37),
+ (24, 55),
+ (15, 17),
+ (14, 41),
+ (14, 27),
+ (28, 41),
+ (27, 46),
+ (48, 58),
+ (9, 21),
+ (19, 41),
+ (21, 40),
+ (17, 52),
+ (25, 42),
+ (13, 26),
+ (33, 59),
+ (28, 44),
+ (24, 27),
+ (44, 72),
+ (44, 52),
+ (13, 45),
+ (13, 45),
+ (36, 64),
+ (19, 65),
+ (20, 42),
+ (47, 48),
+ (19, 45),
+ (33, 36),
+ (46, 49),
+ (26, 44),
+ (16, 84),
+ (29, 33),
+ (17, 32),
+ (22, 33),
+ (27, 35),
+ (25, 37),
+ (13, 28),
+ (3, 17),
+ (23, 39),
+ (39, 58),
+ (29, 58),
+ (34, 55),
+ (17, 40),
+ (16, 20),
+ (14, 18),
+ (43, 58),
+ (12, 40),
+ (18, 43),
+ (15, 27),
+ (13, 47),
+ (33, 55),
+ (35, 56),
+ (37, 47),
+ (46, 47),
+ (22, 28),
+ (38, 44),
+ (25, 34),
+ (32, 34),
+ (13, 57),
+ (9, 22),
+ (30, 79),
+ (34, 37),
+ (38, 53),
+ (33, 57),
+ (27, 47),
+ (17, 20),
+ (18, 24),
+ (26, 59),
+ (29, 38),
+ (46, 53),
+ (34, 53),
+ (14, 62),
+ (10, 30),
+ (43, 50),
+ (29, 46),
+ (31, 34),
+ (23, 29),
+ (23, 38),
+ (26, 31),
+ (20, 38),
+ (29, 42),
+ (23, 31),
+ (36, 51),
+ (37, 48),
+ (13, 37),
+ (17, 32),
+ (17, 27),
+ (27, 45),
+ (31, 34),
+ (26, 34),
+ (34, 39),
+ (37, 40),
+ (25, 66),
+ (24, 44),
+ (22, 33),
+ (45, 45),
+ (19, 51),
+ (16, 37),
+ (22, 27),
+ (30, 45),
+ (10, 51),
+ (16, 31),
+ (44, 51),
+ (3, 32),
+ (27, 50),
+ (21, 27),
+ (40, 44),
+ (10, 55),
+ (41, 47),
+ (6, 35),
+ (26, 29),
+ (24, 28),
+ (24, 56),
+ (28, 47),
+ (16, 45),
+ (29, 35),
+ (10, 55),
+ (37, 39),
+ (28, 35),
+ (23, 37),
+ (17, 52),
+ (37, 46),
+ (37, 57),
+ (43, 50),
+ (10, 42),
+ (29, 51),
+ (27, 34),
+ (17, 32),
+ (21, 29),
+ (3, 35),
+ (46, 52),
+ (31, 37),
+ (16, 43),
+ (60, 61),
+ (0, 38),
+ (17, 21),
+ (17, 24),
+ (28, 37),
+ (18, 30),
+ (26, 35),
+ (17, 32),
+ (27, 44),
+ (23, 51),
+ (18, 57),
+ (27, 35),
+ (23, 29),
+ (32, 38),
+ (26, 66),
+ (26, 30),
+ (20, 29),
+ (16, 23),
+ (27, 29),
+ (37, 53),
+ (17, 49),
+ (57, 60),
+ (27, 38),
+ (21, 49),
+ (16, 50),
+ (21, 22),
+ (34, 37),
+ (33, 40),
+ (9, 26),
+ (21, 30),
+ (50, 53),
+ (24, 24),
+ (20, 48),
+ (35, 62),
+ (32, 37),
+ (30, 50),
+ (23, 56),
+ (44, 51),
+ (32, 38),
+ (32, 55),
+ (23, 43),
+ (29, 48),
+ (23, 57),
+ (12, 33),
+ (27, 42),
+ (25, 38),
+ (13, 66),
+ (6, 23),
+ (33, 45),
+ (3, 27),
+ (35, 47),
+ (17, 51),
+ (13, 59),
+ (31, 44),
+ (13, 41),
+ (15, 39),
+ (44, 57),
+ (20, 27),
+ (0, 9),
+ (16, 26),
+ (24, 54),
+ (33, 36),
+ (20, 49),
+ (0, 48),
+ (33, 34),
+ (52, 56),
+ (34, 37),
+ (20, 26),
+ (7, 26),
+ (52, 60),
+ (25, 96),
+ (38, 47),
+ (27, 39),
+ (24, 31),
+ (3, 18),
+ (0, 41),
+ (41, 48),
+ (21, 36),
+ (9, 54),
+ (28, 38),
+ (25, 26),
+ (3, 32),
+ (45, 61),
+ (9, 34),
+ (16, 53),
+ (7, 28),
+ (3, 27),
+ (20, 50),
+ (21, 87),
+ (18, 22),
+ (34, 38),
+ (38, 59),
+ (39, 47),
+ (24, 30),
+ (8, 55),
+ (25, 56),
+ (28, 61),
+ (40, 60),
+ (3, 44),
+ (39, 61),
+ (16, 44),
+ (24, 44),
+ (34, 35),
+ (10, 35),
+ (40, 48),
+ (40, 54),
+ (22, 25),
+ (23, 45),
+ (36, 51),
+ (7, 27),
+ (29, 57),
+ (20, 49),
+ (26, 28),
+ (22, 34),
+ (26, 50),
+ (43, 54),
+ (40, 45),
+ (30, 41),
+ (51, 59),
+ (20, 25),
+ (25, 40),
+ (27, 31),
+ (33, 34),
+ (32, 33),
+ (39, 57),
+ (19, 33),
+ (0, 47),
+ (3, 67),
+ (17, 36),
+ (24, 59),
+ (10, 27),
+ (39, 48),
+ (18, 65),
+ (27, 55),
+ (6, 48),
+ (38, 54),
+ (43, 54),
+ (17, 31),
+ (13, 76),
+ (23, 57),
+ (14, 30),
+ (21, 43),
+ (10, 32),
+ (27, 51),
+ (23, 54),
+ (41, 42),
+ (7, 62),
+ (13, 45),
+ (26, 55),
+ (23, 44),
+ (40, 50),
+ (27, 42),
+ (36, 51),
+ (19, 28),
+ (24, 40),
+ (7, 27),
+ (37, 47),
+ (27, 27),
+ (26, 45),
+ (23, 30),
+ (16, 30),
+ (0, 14),
+ (30, 43),
+ (11, 13),
+ (36, 44),
+ (13, 42),
+ (51, 58),
+ (48, 53),
+ (27, 29),
+ (31, 32),
+ (27, 31),
+ (35, 45),
+ (26, 39),
+ (20, 20),
+ (3, 47),
+ (37, 45),
+ (33, 34),
+ (40, 54),
+ (28, 51),
+ (3, 40),
+ (39, 40),
+ (43, 50),
+ (36, 61),
+ (20, 49),
+ (10, 19),
+ (34, 41),
+ (13, 48),
+ (20, 68),
+ (3, 10),
+ (33, 33),
+ (22, 34),
+ (23, 37),
+ (26, 40),
+ (21, 30),
+ (38, 65),
+ (32, 38),
+ (22, 34),
+ (16, 19),
+ (36, 36),
+ (26, 44),
+ (7, 13),
+ (30, 63),
+ (23, 44),
+ (42, 50),
+ (11, 43),
+ (42, 43),
+ (13, 23),
+ (17, 57),
+ (6, 24),
+ (6, 21),
+ (3, 17),
+ (24, 46),
+ (22, 36),
+ (26, 41),
+ (18, 36),
+ (20, 34),
+ (27, 44),
+ (24, 46),
+ (16, 34),
+ (46, 46),
+ (15, 33),
+ (0, 40),
+ (27, 33),
+ (39, 50),
+ (47, 53),
+ (17, 30),
+ (44, 58),
+ (35, 54),
+ (18, 19),
+ (17, 30),
+ (20, 26),
+ (23, 42),
+ (28, 37),
+ (25, 50),
+ (39, 40),
+ (35, 38),
+ (53, 70),
+ (10, 61),
+ (22, 39),
+ (16, 39),
+ (24, 54),
+ (15, 57),
+ (21, 24),
+ (29, 51),
+ (15, 39),
+ (46, 47),
+ (38, 54),
+ (26, 28),
+ (17, 33),
+ (26, 38),
+ (27, 27),
+ (30, 54),
+ (25, 30),
+ (33, 36),
+ (0, 46),
+ (26, 30),
+ (16, 57),
+ (41, 42),
+ (24, 34),
+ (7, 10),
+ (17, 53),
+ (25, 31),
+ (27, 37),
+ (7, 55),
+ (17, 34),
+ (35, 50),
+ (21, 55),
+ (25, 30),
+ (20, 31),
+ (35, 62),
+ (0, 37),
+ (6, 34),
+ (24, 52),
+ (44, 51),
+ (37, 43),
+ (9, 21),
+ (19, 63),
+ (40, 44),
+ (29, 31),
+ (39, 53),
+ (23, 55),
+ (17, 53),
+ (7, 33),
+ (43, 67),
+ (7, 22),
+ (40, 57),
+ (27, 30),
+ (35, 41),
+ (26, 54),
+ (27, 66),
+ (49, 57),
+ (27, 47),
+ (17, 20),
+ (45, 56),
+ (17, 53),
+ (13, 46),
+ (23, 45),
+ (13, 120),
+ (9, 46),
+ (28, 30),
+ (34, 45),
+ (31, 41),
+ (13, 27),
+ (21, 26),
+ (32, 36),
+ (32, 39),
+ (22, 36),
+ (37, 50),
+ (33, 39),
+ (17, 39),
+ (5, 60),
+ (19, 52),
+ (0, 16),
+ (33, 38),
+ (14, 37),
+ (33, 35),
+ (41, 61),
+ (34, 44),
+ (38, 43),
+ (0, 56),
+ (10, 51),
+ (34, 53),
+ (16, 51),
+ (33, 48),
+ (26, 56),
+ (36, 42),
+ (30, 44),
+ (41, 44),
+ (24, 40),
+ (22, 32),
+ (15, 45),
+ (27, 46),
+ (12, 42),
+ (24, 49),
+ (38, 46),
+ (23, 51),
+ (13, 44),
+ (13, 43),
+ (5, 26),
+ (26, 30),
+ (17, 43),
+ (23, 49),
+ (51, 51),
+ (23, 44),
+ (45, 51),
+ (25, 36),
+ (30, 68),
+ (33, 33),
+ (37, 41),
+ (21, 62),
+ (27, 28),
+ (49, 54),
+ (30, 32),
+ (29, 32),
+ (12, 47),
+ (31, 53),
+ (44, 47),
+ (16, 39),
+ (31, 52),
+ (31, 46),
+ (24, 30),
+ (34, 44),
+ (27, 34),
+ (34, 46),
+ (42, 45),
+ (54, 117),
+ (17, 60),
+ (36, 52),
+ (31, 48),
+ (22, 27),
+ (7, 49),
+ (24, 38),
+ (3, 10),
+ (34, 47),
+ (16, 35),
+ (19, 21),
+ (31, 49),
+ (16, 26),
+ (31, 35),
+ (40, 52),
+ (6, 19),
+ (23, 31),
+ (16, 20),
+ (27, 42),
+ (9, 23),
+ (7, 47),
+ (25, 35),
+ (24, 27),
+ (17, 46),
+ (10, 29),
+ (32, 37),
+ (34, 44),
+ (19, 32),
+ (35, 38),
+ (20, 33),
+ (0, 40),
+ (19, 30),
+ (28, 30),
+ (17, 49),
+ (45, 47),
+ (7, 47),
+ (0, 18),
+ (34, 41),
+ (37, 51),
+ (7, 37),
+ (39, 59),
+ (31, 51),
+ (8, 58),
+ (35, 64),
+ (16, 39),
+ (47, 48),
+ (37, 47),
+ (7, 10),
+ (23, 35),
+ (16, 17),
+ (23, 28),
+ (11, 43),
+ (16, 24),
+ (32, 59),
+ (14, 38),
+ (24, 28),
+ (14, 33),
+ (40, 55),
+ (33, 36),
+ (26, 34),
+ (38, 44),
+ (42, 44),
+ (46, 71),
+ (21, 58),
+ (17, 31),
+ (33, 36),
+ (9, 36),
+ (27, 42),
+ (34, 41),
+ (20, 45),
+ (28, 31),
+ (10, 39),
+ (32, 35),
+ (30, 41),
+ (17, 26),
+ (32, 46),
+ (9, 40),
+ (34, 52),
+ (12, 22),
+ (50, 52),
+ (23, 33),
+ (27, 45),
+ (16, 41),
+ (40, 55),
+ (27, 35),
+ (56, 56),
+ (23, 35)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Predict Final Outcome using Aggression Scores</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Scorigami.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Scorigami Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
