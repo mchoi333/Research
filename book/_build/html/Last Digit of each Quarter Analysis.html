@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Final Digits of each Quarter Analysis &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Last Digit of each Quarter Analysis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Predict Final Outcome using Aggression Scores" href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html" />
+    <link rel="prev" title="NFL Scoring Plays Research Project." href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    NFL Scoring Plays Research Project.
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Final Digits of each Quarter Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html">Predict Final Outcome using Aggression Scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scoring%20Distributions.html">Model Scoring Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scorigami.html">Scorigami Analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLast Digit of each Quarter Analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Last Digit of each Quarter Analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Final Digits of each Quarter Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="final-digits-of-each-quarter-analysis">
+<h1>Final Digits of each Quarter Analysis<a class="headerlink" href="#final-digits-of-each-quarter-analysis" title="Link to this heading">#</a></h1>
+<p>We will start by modeling the historical data of scores. For simplicity, we will look at the final digits of scores for each quarter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qtr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/quarters.csv&#39;</span><span class="p">)</span>
+<span class="n">qtr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>week</th>
+      <th>game_date</th>
+      <th>team</th>
+      <th>place</th>
+      <th>qtr1</th>
+      <th>qtr2</th>
+      <th>qtr3</th>
+      <th>qtr4</th>
+      <th>ot</th>
+      <th>spread_line</th>
+      <th>total_line</th>
+      <th>half</th>
+      <th>full</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2013-09-05</td>
+      <td>BAL</td>
+      <td>away</td>
+      <td>7</td>
+      <td>10</td>
+      <td>0</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>7.5</td>
+      <td>48.5</td>
+      <td>17</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2013-09-05</td>
+      <td>DEN</td>
+      <td>home</td>
+      <td>0</td>
+      <td>14</td>
+      <td>21</td>
+      <td>14</td>
+      <td>NaN</td>
+      <td>7.5</td>
+      <td>48.5</td>
+      <td>14</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2013-09-08</td>
+      <td>ARI</td>
+      <td>away</td>
+      <td>0</td>
+      <td>10</td>
+      <td>14</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>3.5</td>
+      <td>42.5</td>
+      <td>10</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2013-09-08</td>
+      <td>LA</td>
+      <td>home</td>
+      <td>0</td>
+      <td>10</td>
+      <td>3</td>
+      <td>14</td>
+      <td>NaN</td>
+      <td>3.5</td>
+      <td>42.5</td>
+      <td>10</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2013-09-08</td>
+      <td>ATL</td>
+      <td>away</td>
+      <td>10</td>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>3.5</td>
+      <td>54.5</td>
+      <td>10</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5745</th>
+      <td>2023</td>
+      <td>12</td>
+      <td>2023-11-23</td>
+      <td>SEA</td>
+      <td>home</td>
+      <td>3</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>-7.0</td>
+      <td>43.5</td>
+      <td>3</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>5746</th>
+      <td>2023</td>
+      <td>12</td>
+      <td>2023-11-23</td>
+      <td>WAS</td>
+      <td>away</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>13.0</td>
+      <td>48.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>5747</th>
+      <td>2023</td>
+      <td>12</td>
+      <td>2023-11-23</td>
+      <td>DAL</td>
+      <td>home</td>
+      <td>7</td>
+      <td>13</td>
+      <td>0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>13.0</td>
+      <td>48.0</td>
+      <td>20</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>5748</th>
+      <td>2023</td>
+      <td>12</td>
+      <td>2023-11-24</td>
+      <td>MIA</td>
+      <td>away</td>
+      <td>3</td>
+      <td>14</td>
+      <td>3</td>
+      <td>14</td>
+      <td>NaN</td>
+      <td>-9.5</td>
+      <td>40.0</td>
+      <td>17</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>5749</th>
+      <td>2023</td>
+      <td>12</td>
+      <td>2023-11-24</td>
+      <td>NYJ</td>
+      <td>home</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>7</td>
+      <td>NaN</td>
+      <td>-9.5</td>
+      <td>40.0</td>
+      <td>6</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+<p>5750 rows × 14 columns</p>
+</div></div></div>
+</div>
+<p>We will make a dataframe containing the last digit of scores for each quarter. Put these dataframes into a list called q. We will also make a list of strings to pull from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;qtr1&#39;</span><span class="p">,</span><span class="s1">&#39;qtr2&#39;</span><span class="p">,</span><span class="s1">&#39;qtr3&#39;</span><span class="p">,</span><span class="s1">&#39;qtr4&#39;</span><span class="p">,</span><span class="s1">&#39;ot&#39;</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">qtr</span><span class="p">[</span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">%</span><span class="k">10</span>).value_counts().sort_index()).reset_index()
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each quarter, we will make a bar chart with the numbers 0 to 9 on the x-axis. On the y axis, we will record the frequency that a final scores has a last digit with the number on the x-axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quarters</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">5</span><span class="p">]]</span>
+<span class="n">quarter</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">quarters</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;darkred&#39;</span><span class="p">,</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">quarters</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">quarter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">quarters</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">:N&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">labelAngle</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Squares&#39;</span><span class="p">),</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Frequency&#39;</span><span class="p">),</span>
+        <span class="n">tooltip</span><span class="o">=</span> <span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Quarter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">quarter</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">quarter</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Overtime&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">vconcat</span><span class="p">(</span><span class="n">quarter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">quarter</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">quarter</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">quarter</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">quarter</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  #altair-viz-7896d13217f74bc488ed612384e85cb4.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-7896d13217f74bc488ed612384e85cb4.vega-embed details,
+  #altair-viz-7896d13217f74bc488ed612384e85cb4.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-7896d13217f74bc488ed612384e85cb4"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-7896d13217f74bc488ed612384e85cb4") {
+      outputDiv = document.getElementById("altair-viz-7896d13217f74bc488ed612384e85cb4");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"data": {"name": "data-49c2eb30037780a154249a940ad4b616"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkred"}, "tooltip": {"field": "qtr1", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr1", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 1", "width": 600}, {"data": {"name": "data-5c66e14b6384b7ed3ef4e2a62b45c50e"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkblue"}, "tooltip": {"field": "qtr2", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr2", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 2", "width": 600}, {"data": {"name": "data-06fdb9e6745e5eefb9422a61c1be0f53"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkorange"}, "tooltip": {"field": "qtr3", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr3", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 3", "width": 600}, {"data": {"name": "data-014bb8b82b7458dad9e60498a05ed34a"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "purple"}, "tooltip": {"field": "qtr4", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr4", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 4", "width": 600}, {"data": {"name": "data-aea9671243e38ff057306e02259c967e"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkgreen"}, "tooltip": {"field": "ot", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "ot", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Overtime", "width": 600}], "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-49c2eb30037780a154249a940ad4b616": [{"qtr1": 0, "count": 2423}, {"qtr1": 1, "count": 25}, {"qtr1": 2, "count": 30}, {"qtr1": 3, "count": 1111}, {"qtr1": 4, "count": 342}, {"qtr1": 5, "count": 6}, {"qtr1": 6, "count": 208}, {"qtr1": 7, "count": 1567}, {"qtr1": 8, "count": 12}, {"qtr1": 9, "count": 26}], "data-5c66e14b6384b7ed3ef4e2a62b45c50e": [{"qtr2": 0, "count": 1915}, {"qtr2": 1, "count": 123}, {"qtr2": 2, "count": 31}, {"qtr2": 3, "count": 1219}, {"qtr2": 4, "count": 487}, {"qtr2": 5, "count": 20}, {"qtr2": 6, "count": 443}, {"qtr2": 7, "count": 1365}, {"qtr2": 8, "count": 34}, {"qtr2": 9, "count": 113}], "data-06fdb9e6745e5eefb9422a61c1be0f53": [{"qtr3": 0, "count": 2339}, {"qtr3": 1, "count": 66}, {"qtr3": 2, "count": 19}, {"qtr3": 3, "count": 1080}, {"qtr3": 4, "count": 351}, {"qtr3": 5, "count": 22}, {"qtr3": 6, "count": 244}, {"qtr3": 7, "count": 1491}, {"qtr3": 8, "count": 82}, {"qtr3": 9, "count": 56}], "data-014bb8b82b7458dad9e60498a05ed34a": [{"qtr4": 0, "count": 1899}, {"qtr4": 1, "count": 133}, {"qtr4": 2, "count": 82}, {"qtr4": 3, "count": 1048}, {"qtr4": 4, "count": 402}, {"qtr4": 5, "count": 80}, {"qtr4": 6, "count": 499}, {"qtr4": 7, "count": 1310}, {"qtr4": 8, "count": 156}, {"qtr4": 9, "count": 141}], "data-aea9671243e38ff057306e02259c967e": [{"ot": 0.0, "count": 159}, {"ot": 2.0, "count": 1}, {"ot": 3.0, "count": 107}, {"ot": 6.0, "count": 65}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NFL Scoring Plays Research Project.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Predict%20Final%20Outcome%20using%20Aggression%20Scores.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Predict Final Outcome using Aggression Scores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
