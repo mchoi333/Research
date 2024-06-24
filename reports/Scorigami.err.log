@@ -15,77 +15,106 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-all_plays_2023 = pd.read_csv('/Users/MC/Downloads/play_by_play_2023.csv')
-plays_2023 = all_plays_2023[['season_type','game_id','week','qtr','total_away_score','total_home_score','quarter_seconds_remaining','sp','posteam','defteam','side_of_field','home_team','away_team','td_team','touchdown','extra_point_result','two_point_conv_result','field_goal_result','total_home_score','total_away_score','desc','play_type','safety']].copy()
-all_games = plays_2023[(plays_2023['sp'] == 1) | (plays_2023['extra_point_result'] == 'failed') | (plays_2023['two_point_conv_result'] == 'failure')].copy()
-all_games['home_team_score'] = (all_games['td_team'] == all_games['home_team']).map(lambda x:  6 if x == True else 0)
-all_games['away_team_score'] = (all_games['td_team'] == all_games['away_team']).map(lambda x:  6 if x == True else 0)
-all_games['xp'] = all_games['extra_point_result'].map(lambda x:  1 if x == 'good' else 0).shift(-1).fillna(0)
-all_games['2pt'] = all_games['two_point_conv_result'].map(lambda x:  2 if x == 'success' else 0).shift(-1).fillna(0)
+multiser = pd.read_html('scoregami.rtf',skiprows = 2)[0].fillna(0).stack()
+multiser = pd.DataFrame(multiser)
+scorigami = multiser[multiser[0] == 0]
+scorigami
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Cell [0;32mIn[2], line 1[0m
-[0;32m----> 1[0m all_plays_2023 [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43m/Users/MC/Downloads/play_by_play_2023.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m      2[0m plays_2023 [38;5;241m=[39m all_plays_2023[[[38;5;124m'[39m[38;5;124mseason_type[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mgame_id[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mweek[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mqtr[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtotal_away_score[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtotal_home_score[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mquarter_seconds_remaining[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124msp[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mposteam[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mdefteam[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mside_of_field[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mhome_team[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124maway_team[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtd_team[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtouchdown[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mextra_point_result[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtwo_point_conv_result[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mfield_goal_result[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtotal_home_score[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mtotal_away_score[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mdesc[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mplay_type[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124msafety[39m[38;5;124m'[39m]][38;5;241m.[39mcopy()
-[1;32m      3[0m all_games [38;5;241m=[39m plays_2023[(plays_2023[[38;5;124m'[39m[38;5;124msp[39m[38;5;124m'[39m] [38;5;241m==[39m [38;5;241m1[39m) [38;5;241m|[39m (plays_2023[[38;5;124m'[39m[38;5;124mextra_point_result[39m[38;5;124m'[39m] [38;5;241m==[39m [38;5;124m'[39m[38;5;124mfailed[39m[38;5;124m'[39m) [38;5;241m|[39m (plays_2023[[38;5;124m'[39m[38;5;124mtwo_point_conv_result[39m[38;5;124m'[39m] [38;5;241m==[39m [38;5;124m'[39m[38;5;124mfailure[39m[38;5;124m'[39m)][38;5;241m.[39mcopy()
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/compat/_optional.py:135[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    134[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 135[0m     module [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[43mname[49m[43m)[49m
+[1;32m    136[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
 
-File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026[0m, in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)[0m
-[1;32m   1013[0m kwds_defaults [38;5;241m=[39m _refine_defaults_read(
-[1;32m   1014[0m     dialect,
-[1;32m   1015[0m     delimiter,
+File [0;32m/usr/local/python/3.10.13/lib/python3.10/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
+
+File [0;32m<frozen importlib._bootstrap>:1050[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1027[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:992[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:241[0m, in [0;36m_call_with_frames_removed[0;34m(f, *args, **kwds)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1050[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1027[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+File [0;32m<frozen importlib._bootstrap>:1004[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'lxml'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[8], line 1[0m
+[0;32m----> 1[0m multiser [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_html[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mscoregami.rtf[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mskiprows[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;241;43m2[39;49m[43m)[49m[[38;5;241m0[39m][38;5;241m.[39mfillna([38;5;241m0[39m)[38;5;241m.[39mstack()
+[1;32m      2[0m multiser [38;5;241m=[39m pd[38;5;241m.[39mDataFrame(multiser)
+[1;32m      3[0m scorigami [38;5;241m=[39m multiser[multiser[[38;5;241m0[39m] [38;5;241m==[39m [38;5;241m0[39m]
+
+File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:1240[0m, in [0;36mread_html[0;34m(io, match, flavor, header, index_col, skiprows, attrs, parse_dates, thousands, encoding, decimal, converters, na_values, keep_default_na, displayed_only, extract_links, dtype_backend, storage_options)[0m
+[1;32m   1224[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(io, [38;5;28mstr[39m) [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28many[39m(
+[1;32m   1225[0m     [
+[1;32m   1226[0m         is_file_like(io),
 [0;32m   (...)[0m
-[1;32m   1022[0m     dtype_backend[38;5;241m=[39mdtype_backend,
-[1;32m   1023[0m )
-[1;32m   1024[0m kwds[38;5;241m.[39mupdate(kwds_defaults)
-[0;32m-> 1026[0m [38;5;28;01mreturn[39;00m [43m_read[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[43mkwds[49m[43m)[49m
+[1;32m   1230[0m     ]
+[1;32m   1231[0m ):
+[1;32m   1232[0m     warnings[38;5;241m.[39mwarn(
+[1;32m   1233[0m         [38;5;124m"[39m[38;5;124mPassing literal html to [39m[38;5;124m'[39m[38;5;124mread_html[39m[38;5;124m'[39m[38;5;124m is deprecated and [39m[38;5;124m"[39m
+[1;32m   1234[0m         [38;5;124m"[39m[38;5;124mwill be removed in a future version. To read from a [39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m   1237[0m         stacklevel[38;5;241m=[39mfind_stack_level(),
+[1;32m   1238[0m     )
+[0;32m-> 1240[0m [38;5;28;01mreturn[39;00m [43m_parse[49m[43m([49m
+[1;32m   1241[0m [43m    [49m[43mflavor[49m[38;5;241;43m=[39;49m[43mflavor[49m[43m,[49m
+[1;32m   1242[0m [43m    [49m[43mio[49m[38;5;241;43m=[39;49m[43mio[49m[43m,[49m
+[1;32m   1243[0m [43m    [49m[43mmatch[49m[38;5;241;43m=[39;49m[43mmatch[49m[43m,[49m
+[1;32m   1244[0m [43m    [49m[43mheader[49m[38;5;241;43m=[39;49m[43mheader[49m[43m,[49m
+[1;32m   1245[0m [43m    [49m[43mindex_col[49m[38;5;241;43m=[39;49m[43mindex_col[49m[43m,[49m
+[1;32m   1246[0m [43m    [49m[43mskiprows[49m[38;5;241;43m=[39;49m[43mskiprows[49m[43m,[49m
+[1;32m   1247[0m [43m    [49m[43mparse_dates[49m[38;5;241;43m=[39;49m[43mparse_dates[49m[43m,[49m
+[1;32m   1248[0m [43m    [49m[43mthousands[49m[38;5;241;43m=[39;49m[43mthousands[49m[43m,[49m
+[1;32m   1249[0m [43m    [49m[43mattrs[49m[38;5;241;43m=[39;49m[43mattrs[49m[43m,[49m
+[1;32m   1250[0m [43m    [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mencoding[49m[43m,[49m
+[1;32m   1251[0m [43m    [49m[43mdecimal[49m[38;5;241;43m=[39;49m[43mdecimal[49m[43m,[49m
+[1;32m   1252[0m [43m    [49m[43mconverters[49m[38;5;241;43m=[39;49m[43mconverters[49m[43m,[49m
+[1;32m   1253[0m [43m    [49m[43mna_values[49m[38;5;241;43m=[39;49m[43mna_values[49m[43m,[49m
+[1;32m   1254[0m [43m    [49m[43mkeep_default_na[49m[38;5;241;43m=[39;49m[43mkeep_default_na[49m[43m,[49m
+[1;32m   1255[0m [43m    [49m[43mdisplayed_only[49m[38;5;241;43m=[39;49m[43mdisplayed_only[49m[43m,[49m
+[1;32m   1256[0m [43m    [49m[43mextract_links[49m[38;5;241;43m=[39;49m[43mextract_links[49m[43m,[49m
+[1;32m   1257[0m [43m    [49m[43mdtype_backend[49m[38;5;241;43m=[39;49m[43mdtype_backend[49m[43m,[49m
+[1;32m   1258[0m [43m    [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m
+[1;32m   1259[0m [43m[49m[43m)[49m
 
-File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:620[0m, in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
-[1;32m    617[0m _validate_names(kwds[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mnames[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m))
-[1;32m    619[0m [38;5;66;03m# Create the parser.[39;00m
-[0;32m--> 620[0m parser [38;5;241m=[39m [43mTextFileReader[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m
-[1;32m    622[0m [38;5;28;01mif[39;00m chunksize [38;5;129;01mor[39;00m iterator:
-[1;32m    623[0m     [38;5;28;01mreturn[39;00m parser
+File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:971[0m, in [0;36m_parse[0;34m(flavor, io, match, attrs, encoding, displayed_only, extract_links, storage_options, **kwargs)[0m
+[1;32m    969[0m retained [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m    970[0m [38;5;28;01mfor[39;00m flav [38;5;129;01min[39;00m flavor:
+[0;32m--> 971[0m     parser [38;5;241m=[39m [43m_parser_dispatch[49m[43m([49m[43mflav[49m[43m)[49m
+[1;32m    972[0m     p [38;5;241m=[39m parser(
+[1;32m    973[0m         io,
+[1;32m    974[0m         compiled_match,
+[0;32m   (...)[0m
+[1;32m    979[0m         storage_options,
+[1;32m    980[0m     )
+[1;32m    982[0m     [38;5;28;01mtry[39;00m:
 
-File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1620[0m, in [0;36mTextFileReader.__init__[0;34m(self, f, engine, **kwds)[0m
-[1;32m   1617[0m     [38;5;28mself[39m[38;5;241m.[39moptions[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m] [38;5;241m=[39m kwds[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m]
-[1;32m   1619[0m [38;5;28mself[39m[38;5;241m.[39mhandles: IOHandles [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[0;32m-> 1620[0m [38;5;28mself[39m[38;5;241m.[39m_engine [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_engine[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mengine[49m[43m)[49m
+File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:918[0m, in [0;36m_parser_dispatch[0;34m(flavor)[0m
+[1;32m    916[0m     import_optional_dependency([38;5;124m"[39m[38;5;124mbs4[39m[38;5;124m"[39m)
+[1;32m    917[0m [38;5;28;01melse[39;00m:
+[0;32m--> 918[0m     [43mimport_optional_dependency[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mlxml.etree[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m    919[0m [38;5;28;01mreturn[39;00m _valid_parsers[flavor]
 
-File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1880[0m, in [0;36mTextFileReader._make_engine[0;34m(self, f, engine)[0m
-[1;32m   1878[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m mode:
-[1;32m   1879[0m         mode [38;5;241m+[39m[38;5;241m=[39m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m
-[0;32m-> 1880[0m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;241m=[39m [43mget_handle[49m[43m([49m
-[1;32m   1881[0m [43m    [49m[43mf[49m[43m,[49m
-[1;32m   1882[0m [43m    [49m[43mmode[49m[43m,[49m
-[1;32m   1883[0m [43m    [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1884[0m [43m    [49m[43mcompression[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcompression[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1885[0m [43m    [49m[43mmemory_map[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mmemory_map[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1886[0m [43m    [49m[43mis_text[49m[38;5;241;43m=[39;49m[43mis_text[49m[43m,[49m
-[1;32m   1887[0m [43m    [49m[43merrors[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding_errors[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mstrict[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
-[1;32m   1888[0m [43m    [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1889[0m [43m[49m[43m)[49m
-[1;32m   1890[0m [38;5;28;01massert[39;00m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
-[1;32m   1891[0m f [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhandles[38;5;241m.[39mhandle
+File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/compat/_optional.py:138[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    136[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
+[1;32m    137[0m     [38;5;28;01mif[39;00m errors [38;5;241m==[39m [38;5;124m"[39m[38;5;124mraise[39m[38;5;124m"[39m:
+[0;32m--> 138[0m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(msg)
+[1;32m    139[0m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+[1;32m    141[0m [38;5;66;03m# Handle submodules: if we have submodule, grab parent module from sys.modules[39;00m
 
-File [0;32m~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/common.py:873[0m, in [0;36mget_handle[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)[0m
-[1;32m    868[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(handle, [38;5;28mstr[39m):
-[1;32m    869[0m     [38;5;66;03m# Check whether the filename is to be opened in binary mode.[39;00m
-[1;32m    870[0m     [38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.[39;00m
-[1;32m    871[0m     [38;5;28;01mif[39;00m ioargs[38;5;241m.[39mencoding [38;5;129;01mand[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ioargs[38;5;241m.[39mmode:
-[1;32m    872[0m         [38;5;66;03m# Encoding[39;00m
-[0;32m--> 873[0m         handle [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m
-[1;32m    874[0m [43m            [49m[43mhandle[49m[43m,[49m
-[1;32m    875[0m [43m            [49m[43mioargs[49m[38;5;241;43m.[39;49m[43mmode[49m[43m,[49m
-[1;32m    876[0m [43m            [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mioargs[49m[38;5;241;43m.[39;49m[43mencoding[49m[43m,[49m
-[1;32m    877[0m [43m            [49m[43merrors[49m[38;5;241;43m=[39;49m[43merrors[49m[43m,[49m
-[1;32m    878[0m [43m            [49m[43mnewline[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m    879[0m [43m        [49m[43m)[49m
-[1;32m    880[0m     [38;5;28;01melse[39;00m:
-[1;32m    881[0m         [38;5;66;03m# Binary mode[39;00m
-[1;32m    882[0m         handle [38;5;241m=[39m [38;5;28mopen[39m(handle, ioargs[38;5;241m.[39mmode)
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/Users/MC/Downloads/play_by_play_2023.csv'
+[0;31mImportError[0m: Missing optional dependency 'lxml'.  Use pip or conda to install lxml.
 
