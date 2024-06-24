@@ -393,7 +393,7 @@ document.write(`
 <p>We start by loading the dataset of all plays in the 2023 NFL season. We extract the columns that we want and we create a all_games dataframe of all scoring plays including failed extra points and two point conversions. From there, we assign 6 for all touchdowns and 1 for sucessful extra points and 2 for sucessful 2 point conversions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_plays_2023</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_plays_2023</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;play_by_play_2023.csv&#39;</span><span class="p">)</span>
 <span class="n">plays_2023</span> <span class="o">=</span> <span class="n">all_plays_2023</span><span class="p">[[</span><span class="s1">&#39;season_type&#39;</span><span class="p">,</span><span class="s1">&#39;game_id&#39;</span><span class="p">,</span><span class="s1">&#39;week&#39;</span><span class="p">,</span><span class="s1">&#39;qtr&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;quarter_seconds_remaining&#39;</span><span class="p">,</span><span class="s1">&#39;sp&#39;</span><span class="p">,</span><span class="s1">&#39;posteam&#39;</span><span class="p">,</span><span class="s1">&#39;defteam&#39;</span><span class="p">,</span><span class="s1">&#39;side_of_field&#39;</span><span class="p">,</span><span class="s1">&#39;home_team&#39;</span><span class="p">,</span><span class="s1">&#39;away_team&#39;</span><span class="p">,</span><span class="s1">&#39;td_team&#39;</span><span class="p">,</span><span class="s1">&#39;touchdown&#39;</span><span class="p">,</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">,</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">,</span><span class="s1">&#39;field_goal_result&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;desc&#39;</span><span class="p">,</span><span class="s1">&#39;play_type&#39;</span><span class="p">,</span><span class="s1">&#39;safety&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">all_games</span> <span class="o">=</span> <span class="n">plays_2023</span><span class="p">[(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;sp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failed&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failure&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;td_team&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">all_games</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="mi">6</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kc">True</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
@@ -404,69 +404,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">all_plays_2023</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plays_2023</span> <span class="o">=</span> <span class="n">all_plays_2023</span><span class="p">[[</span><span class="s1">&#39;season_type&#39;</span><span class="p">,</span><span class="s1">&#39;game_id&#39;</span><span class="p">,</span><span class="s1">&#39;week&#39;</span><span class="p">,</span><span class="s1">&#39;qtr&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;quarter_seconds_remaining&#39;</span><span class="p">,</span><span class="s1">&#39;sp&#39;</span><span class="p">,</span><span class="s1">&#39;posteam&#39;</span><span class="p">,</span><span class="s1">&#39;defteam&#39;</span><span class="p">,</span><span class="s1">&#39;side_of_field&#39;</span><span class="p">,</span><span class="s1">&#39;home_team&#39;</span><span class="p">,</span><span class="s1">&#39;away_team&#39;</span><span class="p">,</span><span class="s1">&#39;td_team&#39;</span><span class="p">,</span><span class="s1">&#39;touchdown&#39;</span><span class="p">,</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">,</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">,</span><span class="s1">&#39;field_goal_result&#39;</span><span class="p">,</span><span class="s1">&#39;total_home_score&#39;</span><span class="p">,</span><span class="s1">&#39;total_away_score&#39;</span><span class="p">,</span><span class="s1">&#39;desc&#39;</span><span class="p">,</span><span class="s1">&#39;play_type&#39;</span><span class="p">,</span><span class="s1">&#39;safety&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">all_games</span> <span class="o">=</span> <span class="n">plays_2023</span><span class="p">[(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;sp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;extra_point_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failed&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">plays_2023</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;failure&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_20918/1294845193.py:1: DtypeWarning: Columns (179,180,182,183,189,190,197,198,203,204,205,206,218,219,220,222,224,226,253,254,255,260,262,263,283,284,332) have mixed types. Specify dtype option on import or set low_memory=False.
+  all_plays_2023 = pd.read_csv(&#39;play_by_play_2023.csv&#39;)
 </pre></div>
 </div>
 </div>
@@ -1185,7 +1124,7 @@ document.write(`
 <p>Next, we will create a dictionary of the probability that a single scoring play results in 2,3,6,7, or 8 points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/scoregami.rtf&#39;</span><span class="p">,</span><span class="n">skiprows</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;scoregami.rtf&#39;</span><span class="p">,</span><span class="n">skiprows</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
 <span class="n">multiser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">multiser</span><span class="p">)</span>
 <span class="n">scorigami</span> <span class="o">=</span> <span class="n">multiser</span><span class="p">[</span><span class="n">multiser</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">scorigami</span>
@@ -1193,80 +1132,104 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/compat/_optional.py:135,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">135</span>     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File /usr/local/python/3.10.13/lib/python3.10/importlib/__init__.py:126,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">126</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="5" valign="top">0</th>
-      <th>1</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <th>...</th>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th rowspan="5" valign="top">73</th>
-      <th>69</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>70</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>71</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>73</th>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>4393 rows × 1 columns</p>
-</div></div></div>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1050,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1027,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:992,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:241,</span> in <span class="ni">_call_with_frames_removed</span><span class="nt">(f, *args, **kwds)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1050,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1027,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1004,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;lxml&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">multiser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;scoregami.rtf&#39;</span><span class="p">,</span><span class="n">skiprows</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">multiser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">multiser</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">scorigami</span> <span class="o">=</span> <span class="n">multiser</span><span class="p">[</span><span class="n">multiser</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:1240,</span> in <span class="ni">read_html</span><span class="nt">(io, match, flavor, header, index_col, skiprows, attrs, parse_dates, thousands, encoding, decimal, converters, na_values, keep_default_na, displayed_only, extract_links, dtype_backend, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1224</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="p">[</span>
+<span class="g g-Whitespace">   </span><span class="mi">1226</span>         <span class="n">is_file_like</span><span class="p">(</span><span class="n">io</span><span class="p">),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1230</span>     <span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1231</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span>         <span class="s2">&quot;Passing literal html to &#39;read_html&#39; is deprecated and &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1234</span>         <span class="s2">&quot;will be removed in a future version. To read from a &quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1237</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span>     <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1240</span> <span class="k">return</span> <span class="n">_parse</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1241</span>     <span class="n">flavor</span><span class="o">=</span><span class="n">flavor</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1242</span>     <span class="n">io</span><span class="o">=</span><span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1243</span>     <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1244</span>     <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1245</span>     <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1246</span>     <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1247</span>     <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1248</span>     <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1249</span>     <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1250</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1251</span>     <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1252</span>     <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1253</span>     <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1254</span>     <span class="n">keep_default_na</span><span class="o">=</span><span class="n">keep_default_na</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1255</span>     <span class="n">displayed_only</span><span class="o">=</span><span class="n">displayed_only</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span>     <span class="n">extract_links</span><span class="o">=</span><span class="n">extract_links</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1257</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1258</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1259</span> <span class="p">)</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:971,</span> in <span class="ni">_parse</span><span class="nt">(flavor, io, match, attrs, encoding, displayed_only, extract_links, storage_options, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">969</span> <span class="n">retained</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">970</span> <span class="k">for</span> <span class="n">flav</span> <span class="ow">in</span> <span class="n">flavor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">971</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">_parser_dispatch</span><span class="p">(</span><span class="n">flav</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>         <span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>         <span class="n">compiled_match</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>         <span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/html.py:918,</span> in <span class="ni">_parser_dispatch</span><span class="nt">(flavor)</span>
+<span class="g g-Whitespace">    </span><span class="mi">916</span>     <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;bs4&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">917</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">918</span>     <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;lxml.etree&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span> <span class="k">return</span> <span class="n">_valid_parsers</span><span class="p">[</span><span class="n">flavor</span><span class="p">]</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/compat/_optional.py:138,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">138</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="c1"># Handle submodules: if we have submodule, grab parent module from sys.modules</span>
+
+<span class="ne">ImportError</span>: Missing optional dependency &#39;lxml&#39;.  Use pip or conda to install lxml.
+</pre></div>
+</div>
+</div>
 </div>
 <p>For each game, we will check if it is a scorigami. If it is, we will add it to the scori list. We will also count how many games it generates 1000 scorigamis.</p>
 <div class="cell docutils container">
