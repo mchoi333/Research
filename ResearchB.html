@@ -405,26 +405,13 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="final-digits-of-each-quarter-analysis">
 <h2>Final Digits of Each Quarter Analysis<a class="headerlink" href="#final-digits-of-each-quarter-analysis" title="Link to this heading">#</a></h2>
 <p>We will start by modeling the historical data of scores. For simplicity, we will look at the final digits of scores for each quarter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qtr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/quarters.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qtr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;quarters.csv&#39;</span><span class="p">)</span>
 <span class="n">qtr</span>
 </pre></div>
 </div>
@@ -701,28 +688,28 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
 <style>
-  #altair-viz-bd1485587d10415684d98f30c7fe542f.vega-embed {
+  #altair-viz-3e4b875bb2ec4973af21aace4f52a737.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-bd1485587d10415684d98f30c7fe542f.vega-embed details,
-  #altair-viz-bd1485587d10415684d98f30c7fe542f.vega-embed details summary {
+  #altair-viz-3e4b875bb2ec4973af21aace4f52a737.vega-embed details,
+  #altair-viz-3e4b875bb2ec4973af21aace4f52a737.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-bd1485587d10415684d98f30c7fe542f"></div>
+<div id="altair-viz-3e4b875bb2ec4973af21aace4f52a737"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-bd1485587d10415684d98f30c7fe542f") {
-      outputDiv = document.getElementById("altair-viz-bd1485587d10415684d98f30c7fe542f");
+    if (outputDiv.id !== "altair-viz-3e4b875bb2ec4973af21aace4f52a737") {
+      outputDiv = document.getElementById("altair-viz-3e4b875bb2ec4973af21aace4f52a737");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.17.0?noext",
       "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
     };
 
@@ -758,12 +745,12 @@ document.write(`
       require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
       maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-lite", "5.17.0"))
         .then(() => maybeLoadScript("vega-embed", "6"))
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"data": {"name": "data-49c2eb30037780a154249a940ad4b616"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkred"}, "tooltip": {"field": "qtr1", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr1", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 1", "width": 600}, {"data": {"name": "data-5c66e14b6384b7ed3ef4e2a62b45c50e"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkblue"}, "tooltip": {"field": "qtr2", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr2", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 2", "width": 600}, {"data": {"name": "data-06fdb9e6745e5eefb9422a61c1be0f53"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkorange"}, "tooltip": {"field": "qtr3", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr3", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 3", "width": 600}, {"data": {"name": "data-014bb8b82b7458dad9e60498a05ed34a"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "purple"}, "tooltip": {"field": "qtr4", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr4", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 4", "width": 600}, {"data": {"name": "data-aea9671243e38ff057306e02259c967e"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkgreen"}, "tooltip": {"field": "ot", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "ot", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Overtime", "width": 600}], "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-49c2eb30037780a154249a940ad4b616": [{"qtr1": 0, "count": 2423}, {"qtr1": 1, "count": 25}, {"qtr1": 2, "count": 30}, {"qtr1": 3, "count": 1111}, {"qtr1": 4, "count": 342}, {"qtr1": 5, "count": 6}, {"qtr1": 6, "count": 208}, {"qtr1": 7, "count": 1567}, {"qtr1": 8, "count": 12}, {"qtr1": 9, "count": 26}], "data-5c66e14b6384b7ed3ef4e2a62b45c50e": [{"qtr2": 0, "count": 1915}, {"qtr2": 1, "count": 123}, {"qtr2": 2, "count": 31}, {"qtr2": 3, "count": 1219}, {"qtr2": 4, "count": 487}, {"qtr2": 5, "count": 20}, {"qtr2": 6, "count": 443}, {"qtr2": 7, "count": 1365}, {"qtr2": 8, "count": 34}, {"qtr2": 9, "count": 113}], "data-06fdb9e6745e5eefb9422a61c1be0f53": [{"qtr3": 0, "count": 2339}, {"qtr3": 1, "count": 66}, {"qtr3": 2, "count": 19}, {"qtr3": 3, "count": 1080}, {"qtr3": 4, "count": 351}, {"qtr3": 5, "count": 22}, {"qtr3": 6, "count": 244}, {"qtr3": 7, "count": 1491}, {"qtr3": 8, "count": 82}, {"qtr3": 9, "count": 56}], "data-014bb8b82b7458dad9e60498a05ed34a": [{"qtr4": 0, "count": 1899}, {"qtr4": 1, "count": 133}, {"qtr4": 2, "count": 82}, {"qtr4": 3, "count": 1048}, {"qtr4": 4, "count": 402}, {"qtr4": 5, "count": 80}, {"qtr4": 6, "count": 499}, {"qtr4": 7, "count": 1310}, {"qtr4": 8, "count": 156}, {"qtr4": 9, "count": 141}], "data-aea9671243e38ff057306e02259c967e": [{"ot": 0.0, "count": 159}, {"ot": 2.0, "count": 1}, {"ot": 3.0, "count": 107}, {"ot": 6.0, "count": 65}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"data": {"name": "data-af098a6a2937d448e638e5dcd838a92c"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkred"}, "tooltip": {"field": "qtr1", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr1", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 1", "width": 600}, {"data": {"name": "data-23c38136f5713e35320a80608ad45de6"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkblue"}, "tooltip": {"field": "qtr2", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr2", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 2", "width": 600}, {"data": {"name": "data-c268e27a6a0da3fc7f94a9a52163e964"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkorange"}, "tooltip": {"field": "qtr3", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr3", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 3", "width": 600}, {"data": {"name": "data-08d408298d189feda60393063ccf405e"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "purple"}, "tooltip": {"field": "qtr4", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "qtr4", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Quarter 4", "width": 600}, {"data": {"name": "data-d8b0962dd76d181b37e79c6c4cc223d8"}, "mark": {"type": "bar"}, "encoding": {"color": {"value": "darkgreen"}, "tooltip": {"field": "ot", "type": "quantitative"}, "x": {"axis": {"labelAngle": 0}, "field": "ot", "title": "Squares", "type": "nominal"}, "y": {"field": "count", "title": "Frequency", "type": "quantitative"}}, "height": 300, "title": "Overtime", "width": 600}], "$schema": "https://vega.github.io/schema/vega-lite/v5.17.0.json", "datasets": {"data-af098a6a2937d448e638e5dcd838a92c": [{"qtr1": 0, "count": 2423}, {"qtr1": 1, "count": 25}, {"qtr1": 2, "count": 30}, {"qtr1": 3, "count": 1111}, {"qtr1": 4, "count": 342}, {"qtr1": 5, "count": 6}, {"qtr1": 6, "count": 208}, {"qtr1": 7, "count": 1567}, {"qtr1": 8, "count": 12}, {"qtr1": 9, "count": 26}], "data-23c38136f5713e35320a80608ad45de6": [{"qtr2": 0, "count": 1915}, {"qtr2": 1, "count": 123}, {"qtr2": 2, "count": 31}, {"qtr2": 3, "count": 1219}, {"qtr2": 4, "count": 487}, {"qtr2": 5, "count": 20}, {"qtr2": 6, "count": 443}, {"qtr2": 7, "count": 1365}, {"qtr2": 8, "count": 34}, {"qtr2": 9, "count": 113}], "data-c268e27a6a0da3fc7f94a9a52163e964": [{"qtr3": 0, "count": 2339}, {"qtr3": 1, "count": 66}, {"qtr3": 2, "count": 19}, {"qtr3": 3, "count": 1080}, {"qtr3": 4, "count": 351}, {"qtr3": 5, "count": 22}, {"qtr3": 6, "count": 244}, {"qtr3": 7, "count": 1491}, {"qtr3": 8, "count": 82}, {"qtr3": 9, "count": 56}], "data-08d408298d189feda60393063ccf405e": [{"qtr4": 0, "count": 1899}, {"qtr4": 1, "count": 133}, {"qtr4": 2, "count": 82}, {"qtr4": 3, "count": 1048}, {"qtr4": 4, "count": 402}, {"qtr4": 5, "count": 80}, {"qtr4": 6, "count": 499}, {"qtr4": 7, "count": 1310}, {"qtr4": 8, "count": 156}, {"qtr4": 9, "count": 141}], "data-d8b0962dd76d181b37e79c6c4cc223d8": [{"ot": 0.0, "count": 159}, {"ot": 2.0, "count": 1}, {"ot": 3.0, "count": 107}, {"ot": 6.0, "count": 65}]}}, {"mode": "vega-lite"});
 </script></div></div>
 </div>
 </section>
@@ -780,320 +767,72 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/8y/bzk4l8dd4d9bqpf55d58_f240000gn/T/ipykernel_1581/2950946296.py:1: DtypeWarning: Columns (179,180,182,183,189,190,197,198,203,204,205,206,218,219,220,222,224,226,253,254,255,260,262,263,283,284,332) have mixed types. Specify dtype option on import or set low_memory=False.
-  all_plays_2023 = pd.read_csv(&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">all_plays_2023</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_plays_2023</span><span class="p">[</span><span class="s1">&#39;fourth_down_attempts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_plays_2023</span><span class="p">[</span><span class="s1">&#39;fourth_down_converted&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">all_plays_2023</span><span class="p">[</span><span class="s1">&#39;fourth_down_failed&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">all_plays_2023</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result2&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">all_plays_2023</span><span class="p">[</span><span class="s1">&#39;two_point_conv_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;success&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/research-sW-RBjcR-py3.10/lib/python3.10/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/MC/Downloads/play_by_play_2023.csv&#39;
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>play_id</th>
-      <th>game_id</th>
-      <th>old_game_id</th>
-      <th>home_team</th>
-      <th>away_team</th>
-      <th>season_type</th>
-      <th>week</th>
-      <th>posteam</th>
-      <th>posteam_type</th>
-      <th>defteam</th>
-      <th>...</th>
-      <th>qb_epa</th>
-      <th>xyac_epa</th>
-      <th>xyac_mean_yardage</th>
-      <th>xyac_median_yardage</th>
-      <th>xyac_success</th>
-      <th>xyac_fd</th>
-      <th>xpass</th>
-      <th>pass_oe</th>
-      <th>fourth_down_attempts</th>
-      <th>two_point_conv_result2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>2023_01_ARI_WAS</td>
-      <td>2023091007</td>
-      <td>WAS</td>
-      <td>ARI</td>
-      <td>REG</td>
-      <td>1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>39</td>
-      <td>2023_01_ARI_WAS</td>
-      <td>2023091007</td>
-      <td>WAS</td>
-      <td>ARI</td>
-      <td>REG</td>
-      <td>1</td>
-      <td>WAS</td>
-      <td>home</td>
-      <td>ARI</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>55</td>
-      <td>2023_01_ARI_WAS</td>
-      <td>2023091007</td>
-      <td>WAS</td>
-      <td>ARI</td>
-      <td>REG</td>
-      <td>1</td>
-      <td>WAS</td>
-      <td>home</td>
-      <td>ARI</td>
-      <td>...</td>
-      <td>-0.336103</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.515058</td>
-      <td>-51.505846</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>77</td>
-      <td>2023_01_ARI_WAS</td>
-      <td>2023091007</td>
-      <td>WAS</td>
-      <td>ARI</td>
-      <td>REG</td>
-      <td>1</td>
-      <td>WAS</td>
-      <td>home</td>
-      <td>ARI</td>
-      <td>...</td>
-      <td>0.703308</td>
-      <td>0.340652</td>
-      <td>3.328642</td>
-      <td>1.0</td>
-      <td>0.996628</td>
-      <td>0.583928</td>
-      <td>0.661106</td>
-      <td>33.889407</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>102</td>
-      <td>2023_01_ARI_WAS</td>
-      <td>2023091007</td>
-      <td>WAS</td>
-      <td>ARI</td>
-      <td>REG</td>
-      <td>1</td>
-      <td>WAS</td>
-      <td>home</td>
-      <td>ARI</td>
-      <td>...</td>
-      <td>0.469799</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.196065</td>
-      <td>-19.606467</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>48420</th>
-      <td>4253</td>
-      <td>2023_19_PIT_BUF</td>
-      <td>2024011501</td>
-      <td>BUF</td>
-      <td>PIT</td>
-      <td>POST</td>
-      <td>19</td>
-      <td>PIT</td>
-      <td>away</td>
-      <td>BUF</td>
-      <td>...</td>
-      <td>0.097917</td>
-      <td>0.642515</td>
-      <td>5.621778</td>
-      <td>4.0</td>
-      <td>0.988080</td>
-      <td>0.249705</td>
-      <td>0.962465</td>
-      <td>3.753471</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>48421</th>
-      <td>4278</td>
-      <td>2023_19_PIT_BUF</td>
-      <td>2024011501</td>
-      <td>BUF</td>
-      <td>PIT</td>
-      <td>POST</td>
-      <td>19</td>
-      <td>PIT</td>
-      <td>away</td>
-      <td>BUF</td>
-      <td>...</td>
-      <td>-0.858869</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.968867</td>
-      <td>3.113294</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>48422</th>
-      <td>4322</td>
-      <td>2023_19_PIT_BUF</td>
-      <td>2024011501</td>
-      <td>BUF</td>
-      <td>PIT</td>
-      <td>POST</td>
-      <td>19</td>
-      <td>PIT</td>
-      <td>away</td>
-      <td>BUF</td>
-      <td>...</td>
-      <td>-0.316456</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.940734</td>
-      <td>5.926609</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>48423</th>
-      <td>4349</td>
-      <td>2023_19_PIT_BUF</td>
-      <td>2024011501</td>
-      <td>BUF</td>
-      <td>PIT</td>
-      <td>POST</td>
-      <td>19</td>
-      <td>PIT</td>
-      <td>away</td>
-      <td>BUF</td>
-      <td>...</td>
-      <td>-1.543516</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.962551</td>
-      <td>3.744876</td>
-      <td>0.0</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>48424</th>
-      <td>4371</td>
-      <td>2023_19_PIT_BUF</td>
-      <td>2024011501</td>
-      <td>BUF</td>
-      <td>PIT</td>
-      <td>POST</td>
-      <td>19</td>
-      <td>PIT</td>
-      <td>away</td>
-      <td>BUF</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-<p>48425 rows × 374 columns</p>
-</div></div></div>
+</div>
 </div>
 <p>We will use the first 15 weeks of an NFL season as a training set. We are most interested in how often a team goes for a fourth down conversion with more than 5 minutes to go between the NOT between the 30 and 40-yard line. If a team is within 30 yards, it would be more aggressive to try to go for a conversion rather than the safe option of kicking a field goal. Similarly, if a team is beyond the 40-yard line, we want to see how often they go for a conversion on fourth down rather than the safe option of punting the ball.  We note that the 30 and 40-yard line “dead man’s zone” is arbitrarily created. A future extension of this project is to determine what bounds make the most sense for this area.</p>
 <div class="cell docutils container">
